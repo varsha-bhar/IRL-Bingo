@@ -1,0 +1,614 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8BD676292DF04A2800426EA1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD676282DF04A2800426EA1 /* FirebaseAuth */; };
+		8BD6762B2DF04A2800426EA1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD6762A2DF04A2800426EA1 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8BD676082DF046A100426EA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BD675E92DF0469F00426EA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BD675F02DF0469F00426EA1;
+			remoteInfo = "IRL Bingo";
+		};
+		8BD676122DF046A100426EA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BD675E92DF0469F00426EA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BD675F02DF0469F00426EA1;
+			remoteInfo = "IRL Bingo";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8BD675F12DF0469F00426EA1 /* IRL Bingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IRL Bingo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD676072DF046A100426EA1 /* IRL BingoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IRL BingoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD676112DF046A100426EA1 /* IRL BingoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IRL BingoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8BD676192DF046A100426EA1 /* Exceptions for "IRL Bingo" folder in "IRL Bingo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8BD675F02DF0469F00426EA1 /* IRL Bingo */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8BD675F32DF0469F00426EA1 /* IRL Bingo */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8BD676192DF046A100426EA1 /* Exceptions for "IRL Bingo" folder in "IRL Bingo" target */,
+			);
+			path = "IRL Bingo";
+			sourceTree = "<group>";
+		};
+		8BD6760A2DF046A100426EA1 /* IRL BingoTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "IRL BingoTests";
+			sourceTree = "<group>";
+		};
+		8BD676142DF046A100426EA1 /* IRL BingoUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "IRL BingoUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8BD675EE2DF0469F00426EA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BD676292DF04A2800426EA1 /* FirebaseAuth in Frameworks */,
+				8BD6762B2DF04A2800426EA1 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD676042DF046A100426EA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD6760E2DF046A100426EA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8BD675E82DF0469F00426EA1 = {
+			isa = PBXGroup;
+			children = (
+				8BD675F32DF0469F00426EA1 /* IRL Bingo */,
+				8BD6760A2DF046A100426EA1 /* IRL BingoTests */,
+				8BD676142DF046A100426EA1 /* IRL BingoUITests */,
+				8BD675F22DF0469F00426EA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8BD675F22DF0469F00426EA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BD675F12DF0469F00426EA1 /* IRL Bingo.app */,
+				8BD676072DF046A100426EA1 /* IRL BingoTests.xctest */,
+				8BD676112DF046A100426EA1 /* IRL BingoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8BD675F02DF0469F00426EA1 /* IRL Bingo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BD6761A2DF046A100426EA1 /* Build configuration list for PBXNativeTarget "IRL Bingo" */;
+			buildPhases = (
+				8BD675ED2DF0469F00426EA1 /* Sources */,
+				8BD675EE2DF0469F00426EA1 /* Frameworks */,
+				8BD675EF2DF0469F00426EA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8BD675F32DF0469F00426EA1 /* IRL Bingo */,
+			);
+			name = "IRL Bingo";
+			packageProductDependencies = (
+				8BD676282DF04A2800426EA1 /* FirebaseAuth */,
+				8BD6762A2DF04A2800426EA1 /* FirebaseFirestore */,
+			);
+			productName = "IRL Bingo";
+			productReference = 8BD675F12DF0469F00426EA1 /* IRL Bingo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8BD676062DF046A100426EA1 /* IRL BingoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BD6761F2DF046A100426EA1 /* Build configuration list for PBXNativeTarget "IRL BingoTests" */;
+			buildPhases = (
+				8BD676032DF046A100426EA1 /* Sources */,
+				8BD676042DF046A100426EA1 /* Frameworks */,
+				8BD676052DF046A100426EA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BD676092DF046A100426EA1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8BD6760A2DF046A100426EA1 /* IRL BingoTests */,
+			);
+			name = "IRL BingoTests";
+			packageProductDependencies = (
+			);
+			productName = "IRL BingoTests";
+			productReference = 8BD676072DF046A100426EA1 /* IRL BingoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8BD676102DF046A100426EA1 /* IRL BingoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BD676222DF046A100426EA1 /* Build configuration list for PBXNativeTarget "IRL BingoUITests" */;
+			buildPhases = (
+				8BD6760D2DF046A100426EA1 /* Sources */,
+				8BD6760E2DF046A100426EA1 /* Frameworks */,
+				8BD6760F2DF046A100426EA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BD676132DF046A100426EA1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8BD676142DF046A100426EA1 /* IRL BingoUITests */,
+			);
+			name = "IRL BingoUITests";
+			packageProductDependencies = (
+			);
+			productName = "IRL BingoUITests";
+			productReference = 8BD676112DF046A100426EA1 /* IRL BingoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8BD675E92DF0469F00426EA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					8BD675F02DF0469F00426EA1 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8BD676062DF046A100426EA1 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 8BD675F02DF0469F00426EA1;
+					};
+					8BD676102DF046A100426EA1 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 8BD675F02DF0469F00426EA1;
+					};
+				};
+			};
+			buildConfigurationList = 8BD675EC2DF0469F00426EA1 /* Build configuration list for PBXProject "IRL Bingo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8BD675E82DF0469F00426EA1;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8BD676272DF04A2800426EA1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8BD675F22DF0469F00426EA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8BD675F02DF0469F00426EA1 /* IRL Bingo */,
+				8BD676062DF046A100426EA1 /* IRL BingoTests */,
+				8BD676102DF046A100426EA1 /* IRL BingoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8BD675EF2DF0469F00426EA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD676052DF046A100426EA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD6760F2DF046A100426EA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8BD675ED2DF0469F00426EA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD676032DF046A100426EA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD6760D2DF046A100426EA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8BD676092DF046A100426EA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BD675F02DF0469F00426EA1 /* IRL Bingo */;
+			targetProxy = 8BD676082DF046A100426EA1 /* PBXContainerItemProxy */;
+		};
+		8BD676132DF046A100426EA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BD675F02DF0469F00426EA1 /* IRL Bingo */;
+			targetProxy = 8BD676122DF046A100426EA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8BD6761B2DF046A100426EA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IRL Bingo/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "IRL Bingo";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uw.ischool.varshabh.IRL-Bingo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8BD6761C2DF046A100426EA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IRL Bingo/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "IRL Bingo";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uw.ischool.varshabh.IRL-Bingo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8BD6761D2DF046A100426EA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8BD6761E2DF046A100426EA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8BD676202DF046A100426EA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uw.ischool.varshabh.IRL-BingoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IRL Bingo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IRL Bingo";
+			};
+			name = Debug;
+		};
+		8BD676212DF046A100426EA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uw.ischool.varshabh.IRL-BingoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IRL Bingo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IRL Bingo";
+			};
+			name = Release;
+		};
+		8BD676232DF046A100426EA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uw.ischool.varshabh.IRL-BingoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "IRL Bingo";
+			};
+			name = Debug;
+		};
+		8BD676242DF046A100426EA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WK9CPG49T7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uw.ischool.varshabh.IRL-BingoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "IRL Bingo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8BD675EC2DF0469F00426EA1 /* Build configuration list for PBXProject "IRL Bingo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BD6761D2DF046A100426EA1 /* Debug */,
+				8BD6761E2DF046A100426EA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BD6761A2DF046A100426EA1 /* Build configuration list for PBXNativeTarget "IRL Bingo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BD6761B2DF046A100426EA1 /* Debug */,
+				8BD6761C2DF046A100426EA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BD6761F2DF046A100426EA1 /* Build configuration list for PBXNativeTarget "IRL BingoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BD676202DF046A100426EA1 /* Debug */,
+				8BD676212DF046A100426EA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BD676222DF046A100426EA1 /* Build configuration list for PBXNativeTarget "IRL BingoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BD676232DF046A100426EA1 /* Debug */,
+				8BD676242DF046A100426EA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BD676272DF04A2800426EA1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BD676282DF04A2800426EA1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD676272DF04A2800426EA1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		8BD6762A2DF04A2800426EA1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD676272DF04A2800426EA1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8BD675E92DF0469F00426EA1 /* Project object */;
+}
