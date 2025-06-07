@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="IRL_Bingo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="Mdi-9h-Za5">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="eqh-zk-oMd" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="eqh-zk-oMd" customClass="SignUpViewController" customModule="IRL_Bingo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j2S-EI-Gde">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,7 +146,7 @@
         <!--Home-->
         <scene sceneID="P0b-MQ-EnF">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="vsJ-a6-CZF" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="vsJ-a6-CZF" customClass="HomeViewController" customModule="IRL_Bingo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rGJ-3i-pwC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -220,7 +220,7 @@
         <!--Community Boards-->
         <scene sceneID="XhC-FM-0iU">
             <objects>
-                <viewController storyboardIdentifier="CommunityBoardViewController" id="jbs-Vf-fvP" customClass="CommunityBoardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommunityBoardViewController" id="jbs-Vf-fvP" customClass="CommunityBoardViewController" customModule="IRL_Bingo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cpU-Ds-zyt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,7 +277,7 @@
         <!--Board Preview View Controller-->
         <scene sceneID="Pqa-xF-xSv">
             <objects>
-                <viewController storyboardIdentifier="BoardPreviewViewController" id="oo4-Bj-l89" customClass="BoardPreviewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BoardPreviewViewController" id="oo4-Bj-l89" customClass="BoardPreviewViewController" customModule="IRL_Bingo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gxR-fG-SQz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -325,13 +325,13 @@
         <!--Create Board-->
         <scene sceneID="MTR-LT-zUh">
             <objects>
-                <viewController storyboardIdentifier="CreateBoardViewController" id="Q7i-nA-n78" customClass="CreateBoardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateBoardViewController" id="Q7i-nA-n78" customClass="CreateBoardViewController" customModule="IRL_Bingo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qAa-WH-839">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter Board Title" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X74-p5-fKN">
-                                <rect key="frame" x="127" y="182" width="136" height="44"/>
+                                <rect key="frame" x="128.66666666666666" y="182" width="135.99999999999997" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="apa-Zn-Mgq"/>
                                 </constraints>
@@ -339,7 +339,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KCZ-Rn-soz">
-                                <rect key="frame" x="20" y="242" width="350" height="350"/>
+                                <rect key="frame" x="20" y="242" width="353" height="350"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="hRy-I4-e7V"/>
@@ -375,12 +375,12 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4N2-Rs-m4T">
-                                <rect key="frame" x="140" y="677" width="110.33333333333331" height="34.333333333333371"/>
+                                <rect key="frame" x="141.33333333333334" y="677" width="110.33333333333334" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save Board"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YVw-DI-lxl">
-                                <rect key="frame" x="84.333333333333329" y="616" width="221.66666666666669" height="31"/>
+                                <rect key="frame" x="85.666666666666671" y="616" width="221.66666666666663" height="31"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fB3-eo-0rC">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -418,7 +418,7 @@
         <!--Play Board-->
         <scene sceneID="0Bf-dY-R0t">
             <objects>
-                <viewController storyboardIdentifier="PlayBoardViewController" id="D3J-pE-1jQ" customClass="PlayBoardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayBoardViewController" id="D3J-pE-1jQ" customClass="PlayBoardViewController" customModule="IRL_Bingo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QTj-xY-HLL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -497,8 +497,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3tg-Ws-Ef8"/>
-        <segue reference="mGy-hx-Xcr"/>
+        <segue reference="DYR-JC-0HC"/>
+        <segue reference="iQh-Fs-Jfk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
