@@ -2,13 +2,13 @@
 //  HomeViewController.swift
 //  IRL Bingo
 //
-//  Created by Amrith Gandham on 6/6/25.
-//
 
 import UIKit
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
-// Local Storage Only
+// Firebase Storage
 @MainActor
 class BingoBoardManager: ObservableObject {
     @Published var userBoards: [BingoBoard] = []
@@ -16,57 +16,133 @@ class BingoBoardManager: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
+    private let db = Firestore.firestore()
+    
     init() {
-        loadLocalBoards()
-        loadSampleCommunityBoards()
+        loadUserBoards()
+        loadCommunityBoards()
     }
     
     func loadUserBoards() {
-        loadLocalBoards()
+        guard let currentUser = Auth.auth().currentUser else {
+            print("No authenticated user")
+            return
+        }
+        
+        getUserUsername(userId: currentUser.uid) { [weak self] username in
+            guard let username = username else {
+                print("Could not find username for user")
+                return
+            }
+            
+            self?.loadBoardsForUser(username: username)
+        }
+    }
+    
+    private func getUserUsername(userId: String, completion: @escaping (String?) -> Void) {
+        db.collection("users").document(userId).getDocument { document, error in
+            if let document = document, document.exists {
+                let username = document.data()?["username"] as? String
+                completion(username)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    private func loadBoardsForUser(username: String) {
+        isLoading = true
+        
+        db.collection("bingo_boards")
+            .whereField("creater", isEqualTo: username)
+            .addSnapshotListener { [weak self] snapshot, error in
+                DispatchQueue.main.async {
+                    self?.isLoading = false
+                    
+                    if let error = error {
+                        self?.errorMessage = error.localizedDescription
+                        print("Error loading user boards: \(error)")
+                        return
+                    }
+                    
+                    guard let documents = snapshot?.documents else {
+                        self?.userBoards = []
+                        return
+                    }
+                    
+                    self?.userBoards = documents.compactMap { doc -> BingoBoard? in
+                        let data = doc.data()
+                        
+                        guard let title = data["title"] as? String,
+                              let creater = data["creater"] as? String,
+                              let cellsData = data["cells"] as? [[String: Any]] else {
+                            return nil
+                        }
+                        
+                        let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
+                        
+                        return BingoBoard(title: title, cells: cells, creater: creater)
+                    }
+                }
+            }
     }
     
     func loadCommunityBoards() {
-        loadSampleCommunityBoards()
+        isLoading = true
+        
+        db.collection("bingo_boards")
+            .whereField("isPublic", isEqualTo: true)
+            .limit(to: 50)
+            .addSnapshotListener { [weak self] snapshot, error in
+                DispatchQueue.main.async {
+                    self?.isLoading = false
+                    
+                    if let error = error {
+                        self?.errorMessage = error.localizedDescription
+                        return
+                    }
+                    
+                    guard let documents = snapshot?.documents else {
+                        self?.communityBoards = []
+                        return
+                    }
+                    
+                    self?.communityBoards = documents.compactMap { doc -> BingoBoard? in
+                        let data = doc.data()
+                        
+                        guard let title = data["title"] as? String,
+                              let creater = data["creater"] as? String,
+                              let cellsData = data["cells"] as? [[String: Any]] else {
+                            return nil
+                        }
+                        
+                        let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
+                        
+                        return BingoBoard(title: title, cells: cells, creater: creater)
+                    }
+                }
+            }
     }
     
-    private func loadLocalBoards() {
-        // For now, create some sample boards
-        userBoards = [
-            BingoBoard(
-                title: "My First Board",
-                cells: createSampleCells(),
-                creater: "currentUser"
-            ),
-            BingoBoard(
-                title: "Weekend Fun",
-                cells: createSampleCells(),
-                creater: "currentUser"
-            )
-        ]
+    private func parseCellsData(_ cellsData: [[String: Any]]) -> [[BingoCell]] {
+        return cellsData.compactMap { rowData in
+            return rowData.compactMap { (key, value) -> BingoCell? in
+                guard let cellDict = value as? [String: Any],
+                      let title = cellDict["title"] as? String,
+                      let isMarked = cellDict["isMarked"] as? Bool else {
+                    return nil
+                }
+                return BingoCell(title: title, isMarked: isMarked)
+            }
+        }
     }
     
-    private func loadSampleCommunityBoards() {
-        communityBoards = [
-            BingoBoard(
-                title: "Public Board 1",
-                cells: createSampleCells(),
-                creater: "otherUser"
-            ),
-            BingoBoard(
-                title: "Community Challenge",
-                cells: createSampleCells(),
-                creater: "anotherUser"
-            )
-        ]
-    }
-    
-    private func createSampleCells() -> [[BingoCell]] {
+    private func createEmptyCells() -> [[BingoCell]] {
         var cells: [[BingoCell]] = []
         
         for row in 0..<5 {
             var rowCells: [BingoCell] = []
             for col in 0..<5 {
-                // Center cell (2,2) is the FREE space
                 if row == 2 && col == 2 {
                     rowCells.append(BingoCell(title: "FREE", isMarked: true))
                 } else {
@@ -80,9 +156,50 @@ class BingoBoardManager: ObservableObject {
     }
     
     func saveBoard(_ board: BingoBoard) async -> Bool {
-        // Add to local storage
-        userBoards.append(board)
-        return true
+        guard let currentUser = Auth.auth().currentUser else {
+            errorMessage = "No authenticated user"
+            return false
+        }
+        
+        return await withCheckedContinuation { continuation in
+            getUserUsername(userId: currentUser.uid) { [weak self] username in
+                guard let username = username else {
+                    self?.errorMessage = "Could not find username"
+                    continuation.resume(returning: false)
+                    return
+                }
+                
+                let boardData: [String: Any] = [
+                    "title": board.title,
+                    "creater": username,
+                    "cells": self?.convertCellsToFirebaseFormat(board.cells) ?? [],
+                    "isPublic": false,
+                    "createdAt": Timestamp(),
+                    "userId": currentUser.uid
+                ]
+                
+                self?.db.collection("bingo_boards").addDocument(data: boardData) { error in
+                    if let error = error {
+                        self?.errorMessage = error.localizedDescription
+                        continuation.resume(returning: false)
+                    } else {
+                        continuation.resume(returning: true)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func convertCellsToFirebaseFormat(_ cells: [[BingoCell]]) -> [[String: Any]] {
+        return cells.enumerated().map { rowIndex, row in
+            return row.enumerated().reduce(into: [String: Any]()) { result, item in
+                let (colIndex, cell) = item
+                result["\(colIndex)"] = [
+                    "title": cell.title,
+                    "isMarked": cell.isMarked
+                ]
+            }
+        }
     }
 }
 
@@ -94,7 +211,6 @@ struct BingoHomeView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                // Action Buttons
                 VStack(spacing: 16) {
                     Button(action: {
                         showingCreateBoard = true
@@ -314,7 +430,7 @@ struct CreateBoardView: View {
         let newBoard = BingoBoard(
             title: boardTitle,
             cells: emptyCells,
-            creater: "currentUser"  // Using "creater" as in your model
+            creater: ""
         )
         
         Task {
@@ -437,7 +553,6 @@ struct PlayBoardView: View {
                                 isFreeSpace: (row == 2 && col == 2),
                                 onTap: {
                                     if isEditMode {
-                                        // Don't edit the free space
                                         if row == 2 && col == 2 {
                                             return
                                         }
@@ -634,7 +749,6 @@ class HomeViewController: UIViewController {
     
     private func setupSwiftUIView() {
         let swiftUIView = BingoHomeView()
-        
         let hostingController = UIHostingController(rootView: swiftUIView)
         
         addChild(hostingController)
