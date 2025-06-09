@@ -282,17 +282,9 @@ struct BingoHomeView: View {
                 
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
-                        Text("Prototype Cells")
+                        Text("Your Boards")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                        Spacer()
-                    }
-                    .padding(.horizontal, 20)
-                    
-                    HStack {
-                        Text("Board Title")
-                            .font(.headline)
                             .foregroundColor(.primary)
                         Spacer()
                     }
@@ -301,7 +293,7 @@ struct BingoHomeView: View {
                     VStack(spacing: 0) {
                         if boardManager.userBoards.isEmpty {
                             VStack(spacing: 8) {
-                                Text("Prototype Content")
+                                Text("My Boards")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                                 Text("Create your first board to get started!")
@@ -361,10 +353,6 @@ struct BoardRowView: View {
                 Text(board.title)
                     .font(.headline)
                     .foregroundColor(.primary)
-                
-                Text("Prototype Content")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
             }
             
             Spacer()
