@@ -20,15 +20,17 @@
         var title: String
         var cells: [[BingoCell]]
         var creater: String?
+        var createdAt: Date?
         
         var id: String {
             documentId ?? UUID().uuidString
         }
 
-        init(title: String, cells: [[BingoCell]], creater: String?, documentId: String? = nil) {
+        init(title: String, cells: [[BingoCell]], creater: String?, documentId: String? = nil, createdAt: Date? = nil) {
             self.title = title
             self.cells = cells
             self.creater = creater
             self.documentId = documentId
+            self.createdAt = createdAt
         }
     }
