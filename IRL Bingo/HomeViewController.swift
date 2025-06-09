@@ -248,7 +248,6 @@ struct BingoHomeView: View {
     @State private var showingCommunityBoards = false
     
     var body: some View {
-        NavigationView {
             VStack(spacing: 20) {
                 VStack(spacing: 16) {
                     Button(action: {
@@ -344,7 +343,7 @@ struct BingoHomeView: View {
             .sheet(isPresented: $showingCommunityBoards) {
                 CommunityBoardsView(boardManager: boardManager)
             }
-        }
+        
     }
 }
 
