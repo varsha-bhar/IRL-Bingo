@@ -201,14 +201,16 @@ class BingoBoardManager: ObservableObject {
         }
     }
     
-    private func convertCellsToFirebaseFormat(_ cells: [[BingoCell]]) -> [[[String: Any]]] {
+    private func convertCellsToFirebaseFormat(_ cells: [[BingoCell]]) -> [[String: [String: Any]]] {
         return cells.map { row in
-            row.map { cell in
-                [
+            var rowDict: [String: [String: Any]] = [:]
+            for (index, cell) in row.enumerated() {
+                rowDict["\(index)"] = [
                     "title": cell.title,
                     "isMarked": cell.isMarked
                 ]
             }
+            return rowDict
         }
     }
 }
@@ -566,7 +568,7 @@ struct PlayBoardView: View {
                                     }
                                 }
                             )
-                            .frame(width: 60, height: 60) // Fixed size for all cells
+                            .frame(width: 60, height: 60)
                         }
                     }
                 }
