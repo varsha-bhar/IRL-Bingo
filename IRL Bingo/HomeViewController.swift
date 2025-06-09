@@ -80,8 +80,10 @@ class BingoBoardManager: ObservableObject {
                         }
                         
                         let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
+                        let timestamp = data["createdAt"] as? Timestamp
+                        let createdAt = timestamp?.dateValue()
                         
-                        return BingoBoard(title: title, cells: cells, creater: creater, documentId: doc.documentID)
+                        return BingoBoard(title: title, cells: cells, creater: creater, documentId: doc.documentID, createdAt: createdAt)
                     }
                 }
             }
@@ -117,8 +119,10 @@ class BingoBoardManager: ObservableObject {
                         }
                         
                         let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
+                        let timestamp = data["createdAt"] as? Timestamp
+                        let createdAt = timestamp?.dateValue()
                         
-                        return BingoBoard(title: title, cells: cells, creater: creater, documentId: doc.documentID)
+                        return BingoBoard(title: title, cells: cells, creater: creater, documentId: doc.documentID, createdAt: createdAt)
                     }
                 }
             }
@@ -282,7 +286,7 @@ struct BingoHomeView: View {
                 
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
-                        Text("Prototype Cells")
+                        Text("Your Boards")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
@@ -301,7 +305,7 @@ struct BingoHomeView: View {
                     VStack(spacing: 0) {
                         if boardManager.userBoards.isEmpty {
                             VStack(spacing: 8) {
-                                Text("Prototype Content")
+                                Text("No Boards Yet")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                                 Text("Create your first board to get started!")
@@ -362,9 +366,11 @@ struct BoardRowView: View {
                     .font(.headline)
                     .foregroundColor(.primary)
                 
-                Text("Prototype Content")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                if let createdAt = board.createdAt {
+                    Text("Created on \(formattedDate(createdAt))")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
             
             Spacer()
@@ -376,6 +382,13 @@ struct BoardRowView: View {
         .padding(.vertical, 12)
         .padding(.horizontal, 16)
         .background(Color.clear)
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
     }
 }
 
