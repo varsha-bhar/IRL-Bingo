@@ -81,7 +81,7 @@ class BingoBoardManager: ObservableObject {
                         
                         let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
                         
-                        return BingoBoard(title: title, cells: cells, creater: creater)
+                        return BingoBoard(title: title, cells: cells, creater: creater, documentId: doc.documentID)
                     }
                 }
             }
@@ -118,11 +118,34 @@ class BingoBoardManager: ObservableObject {
                         
                         let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
                         
-                        return BingoBoard(title: title, cells: cells, creater: creater)
+                        return BingoBoard(title: title, cells: cells, creater: creater, documentId: doc.documentID)
                     }
                 }
             }
     }
+
+    func updateBoard(_ board: BingoBoard) async -> Bool {
+    guard let documentID = board.documentId else {
+        errorMessage = "Cannot update board without document ID"
+        return false
+    }
+    
+    return await withCheckedContinuation { continuation in
+        let boardData: [String: Any] = [
+            "cells": convertCellsToFirebaseFormat(board.cells),
+            "updatedAt": Timestamp()
+        ]
+        
+        db.collection("bingo_boards").document(documentID).updateData(boardData) { [weak self] error in
+            if let error = error {
+                self?.errorMessage = error.localizedDescription
+                continuation.resume(returning: false)
+            } else {
+                continuation.resume(returning: true)
+            }
+        }
+    }
+}
     
     
     private func parseCellsData(_ cellsData: [[String: Any]]) -> [[BingoCell]] {
@@ -291,7 +314,7 @@ struct BingoHomeView: View {
                             ScrollView {
                                 LazyVStack(spacing: 0) {
                                     ForEach(Array(boardManager.userBoards.enumerated()), id: \.element.title) { index, board in
-                                        NavigationLink(destination: PlayBoardView(board: board)) {
+                                        NavigationLink(destination: PlayBoardView(board: board, boardManager: boardManager)) {
                                             BoardRowView(board: board)
                                         }
                                         .buttonStyle(PlainButtonStyle())
@@ -459,7 +482,7 @@ struct CommunityBoardsView: View {
             ScrollView {
                 LazyVStack(spacing: 12) {
                     ForEach(Array(boardManager.communityBoards.enumerated()), id: \.element.title) { index, board in
-                        NavigationLink(destination: PlayBoardView(board: board)) {
+                        NavigationLink(destination: PlayBoardView(board: board, boardManager: boardManager)) {
                             CommunityBoardRowView(board: board)
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -520,15 +543,21 @@ struct PlayBoardView: View {
     @State private var isEditMode = false
     @State private var editingCell: (row: Int, col: Int)? = nil
     @State private var editText = ""
+
+    let boardManager: BingoBoardManager
     
-    init(board: BingoBoard) {
+    init(board: BingoBoard, boardManager: BingoBoardManager) {
         _board = State(initialValue: board)
+        self.boardManager = boardManager
     }
     
     var body: some View {
         VStack(spacing: 20) {
             HStack {
                 Button(action: {
+                    if isEditMode {
+                        saveChanges()
+                    }
                     isEditMode.toggle()
                 }) {
                     Text(isEditMode ? "Done Editing" : "Edit Cards")
@@ -613,6 +642,8 @@ struct PlayBoardView: View {
                 if let cell = editingCell {
                     board.cells[cell.row][cell.col].title = editText
                     editingCell = nil
+
+                    saveChanges()
                 }
             }
         } message: {
@@ -639,6 +670,8 @@ struct PlayBoardView: View {
         }
         
         board.cells[row][col].isMarked.toggle()
+
+        saveChanges()
         
         if board.cells[row][col].isMarked {
             if checkForBingo(board.cells, row: row, col: col) {
@@ -655,6 +688,17 @@ struct PlayBoardView: View {
                 } else {
                     board.cells[row][col].isMarked = false
                 }
+            }
+        }
+
+        saveChanges()
+    }
+
+    private func saveChanges() {
+        Task {
+            let success = await boardManager.updateBoard(board)
+            if !success {
+                print("Failed to save board changes")
             }
         }
     }

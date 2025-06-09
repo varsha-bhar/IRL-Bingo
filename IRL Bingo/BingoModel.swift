@@ -24,4 +24,11 @@
         var id: String {
             documentId ?? UUID().uuidString
         }
+
+        init(title: String, cells: [[BingoCell]], creater: String?, documentId: String? = nil) {
+            self.title = title
+            self.cells = cells
+            self.creater = creater
+            self.documentId = documentId
+        }
     }
