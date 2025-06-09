@@ -101,7 +101,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-ye-TuO">
-                                <rect key="frame" x="133" y="527" width="143" height="35"/>
+                                <rect key="frame" x="125" y="307" width="143" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="PiG-dG-q4N"/>
                                 </constraints>
@@ -118,7 +118,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="word" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="arb-28-fdC">
-                                <rect key="frame" x="179.66666666666666" y="592" width="34" height="18"/>
+                                <rect key="frame" x="179.66666666666666" y="372" width="34" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
@@ -128,12 +128,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="arb-28-fdC" firstAttribute="centerX" secondItem="j2S-EI-Gde" secondAttribute="centerX" id="GlP-U8-uF3"/>
-                            <constraint firstItem="Im6-ye-TuO" firstAttribute="top" secondItem="6PR-IU-oWG" secondAttribute="bottom" constant="250" id="GuP-RC-mpk"/>
-                            <constraint firstItem="6PR-IU-oWG" firstAttribute="centerX" secondItem="j2S-EI-Gde" secondAttribute="centerX" id="RnI-Nq-C9U"/>
-                            <constraint firstItem="Im6-ye-TuO" firstAttribute="leading" secondItem="aGt-yc-38m" secondAttribute="leading" constant="133" id="UI9-4v-UpH"/>
+                            <constraint firstItem="Im6-ye-TuO" firstAttribute="top" secondItem="6PR-IU-oWG" secondAttribute="bottom" constant="30" id="GuP-RC-mpk"/>
+                            <constraint firstItem="6PR-IU-oWG" firstAttribute="centerX" secondItem="aGt-yc-38m" secondAttribute="centerX" id="RnI-Nq-C9U"/>
+                            <constraint firstItem="Im6-ye-TuO" firstAttribute="centerX" secondItem="aGt-yc-38m" secondAttribute="centerX" id="UI9-4v-UpH"/>
                             <constraint firstItem="arb-28-fdC" firstAttribute="top" secondItem="Im6-ye-TuO" secondAttribute="bottom" constant="30" id="YWH-Z0-MCn"/>
                             <constraint firstItem="eiC-Gq-dgZ" firstAttribute="top" secondItem="aGt-yc-38m" secondAttribute="top" constant="20" id="ZTA-GU-2V6"/>
-                            <constraint firstItem="eiC-Gq-dgZ" firstAttribute="centerX" secondItem="j2S-EI-Gde" secondAttribute="centerX" id="gpm-6J-zIg"/>
+                            <constraint firstItem="eiC-Gq-dgZ" firstAttribute="centerX" secondItem="aGt-yc-38m" secondAttribute="centerX" id="gpm-6J-zIg"/>
                             <constraint firstItem="6PR-IU-oWG" firstAttribute="top" secondItem="eiC-Gq-dgZ" secondAttribute="bottom" constant="30" id="zvt-lZ-Aap"/>
                         </constraints>
                     </view>
