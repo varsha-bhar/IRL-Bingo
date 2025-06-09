@@ -8,6 +8,7 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
 
+
 // Firebase Storage
 @MainActor
 class BingoBoardManager: ObservableObject {
@@ -56,7 +57,6 @@ class BingoBoardManager: ObservableObject {
         db.collection("bingo_boards")
             .whereField("creater", isEqualTo: username)
             .addSnapshotListener { [weak self] snapshot, error in
-                DispatchQueue.main.async {
                     self?.isLoading = false
                     
                     if let error = error {
@@ -81,11 +81,12 @@ class BingoBoardManager: ObservableObject {
                         
                         let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
                         
-                        return BingoBoard(title: title, cells: cells, creater: creater)
+                        return BingoBoard(documentId: doc.documentID, title: title, cells: cells, creater: creater)
                     }
-                }
+                
             }
     }
+    
     
     func loadCommunityBoards() {
         isLoading = true
@@ -94,7 +95,7 @@ class BingoBoardManager: ObservableObject {
             .whereField("isPublic", isEqualTo: true)
             .limit(to: 50)
             .addSnapshotListener { [weak self] snapshot, error in
-                DispatchQueue.main.async {
+
                     self?.isLoading = false
                     
                     if let error = error {
@@ -118,16 +119,17 @@ class BingoBoardManager: ObservableObject {
                         
                         let cells = self?.parseCellsData(cellsData) ?? self?.createEmptyCells() ?? []
                         
-                        return BingoBoard(title: title, cells: cells, creater: creater)
+                        return BingoBoard(documentId: doc.documentID, title: title, cells: cells, creater: creater)
                     }
-                }
+                
             }
     }
     
     private func parseCellsData(_ cellsData: [[String: Any]]) -> [[BingoCell]] {
-        return cellsData.compactMap { rowData in
-            return rowData.compactMap { (key, value) -> BingoCell? in
-                guard let cellDict = value as? [String: Any],
+        return cellsData.map { rowDict in
+            let sortedKeys = rowDict.keys.sorted { Int($0)! < Int($1)! }
+            return sortedKeys.compactMap { key in
+                guard let cellDict = rowDict[key] as? [String: Any],
                       let title = cellDict["title"] as? String,
                       let isMarked = cellDict["isMarked"] as? Bool else {
                     return nil
@@ -163,8 +165,13 @@ class BingoBoardManager: ObservableObject {
         
         return await withCheckedContinuation { continuation in
             getUserUsername(userId: currentUser.uid) { [weak self] username in
+                guard let self = self else {
+                    continuation.resume(returning: false)
+                    return
+                }
+                
                 guard let username = username else {
-                    self?.errorMessage = "Could not find username"
+                    self.errorMessage = "Could not find username"
                     continuation.resume(returning: false)
                     return
                 }
@@ -172,18 +179,31 @@ class BingoBoardManager: ObservableObject {
                 let boardData: [String: Any] = [
                     "title": board.title,
                     "creater": username,
-                    "cells": self?.convertCellsToFirebaseFormat(board.cells) ?? [],
+                    "cells": self.convertCellsToFirebaseFormat(board.cells),
                     "isPublic": false,
                     "createdAt": Timestamp(),
                     "userId": currentUser.uid
                 ]
                 
-                self?.db.collection("bingo_boards").addDocument(data: boardData) { error in
-                    if let error = error {
-                        self?.errorMessage = error.localizedDescription
-                        continuation.resume(returning: false)
-                    } else {
-                        continuation.resume(returning: true)
+                if let docId = board.documentId {
+                    // Update existing document
+                    self.db.collection("bingo_boards").document(docId).setData(boardData, merge: true) { error in
+                        if let error = error {
+                            self.errorMessage = error.localizedDescription
+                            continuation.resume(returning: false)
+                        } else {
+                            continuation.resume(returning: true)
+                        }
+                    }
+                } else {
+                    // Create new document
+                    self.db.collection("bingo_boards").addDocument(data: boardData) { error in
+                        if let error = error {
+                            self.errorMessage = error.localizedDescription
+                            continuation.resume(returning: false)
+                        } else {
+                            continuation.resume(returning: true)
+                        }
                     }
                 }
             }
@@ -420,7 +440,7 @@ struct CreateBoardView: View {
         let emptyCells = (0..<5).map { row in
             (0..<5).map { col in
                 if row == 2 && col == 2 {
-                    return BingoCell(title: "FREE", isMarked: true)
+                    return BingoCell(title: "", isMarked: true)
                 } else {
                     return BingoCell(title: "", isMarked: false)
                 }
@@ -428,6 +448,7 @@ struct CreateBoardView: View {
         }
         
         let newBoard = BingoBoard(
+            documentId: nil,
             title: boardTitle,
             cells: emptyCells,
             creater: ""
@@ -465,13 +486,6 @@ struct CommunityBoardsView: View {
             }
             .navigationTitle("Community Boards")
             .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-            }
         }
     }
 }
@@ -510,15 +524,13 @@ struct CommunityBoardRowView: View {
 
 struct PlayBoardView: View {
     @State private var board: BingoBoard
+    var bingoBoardManager: BingoBoardManager
     @State private var showingBingo = false
     @State private var showingReset = false
     @State private var isEditMode = false
     @State private var editingCell: (row: Int, col: Int)? = nil
     @State private var editText = ""
     
-    init(board: BingoBoard) {
-        _board = State(initialValue: board)
-    }
     
     var body: some View {
         VStack(spacing: 20) {
@@ -569,7 +581,7 @@ struct PlayBoardView: View {
                 }
             }
             .padding(.horizontal, 20)
-                        
+            
             Spacer()
             
             if !isEditMode {
@@ -595,9 +607,14 @@ struct PlayBoardView: View {
         }
         .navigationTitle(isEditMode ? "Edit Board" : "Play Board")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Home") {
+        .onAppear {
+            for row in 0..<5 {
+                for col in 0..<5 {
+                    let title = board.cells[row][col].title.uppercased()
+                    if title == "FREE" && !(row == 2 && col == 2) {
+                        print("Duplicate FREE cell at [\(row)][\(col)]")
+                        board.cells[row][col].title = ""
+                    }
                 }
             }
         }
@@ -612,6 +629,7 @@ struct PlayBoardView: View {
             Button("Save") {
                 if let cell = editingCell {
                     board.cells[cell.row][cell.col].title = editText
+                    // Removed async updateCell call
                     editingCell = nil
                 }
             }
@@ -637,13 +655,13 @@ struct PlayBoardView: View {
         if row == 2 && col == 2 {
             return
         }
-        
+
+        // Toggle the mark locally
         board.cells[row][col].isMarked.toggle()
-        
-        if board.cells[row][col].isMarked {
-            if checkForBingo(board.cells, row: row, col: col) {
-                showingBingo = true
-            }
+
+        // Check for Bingo locally
+        if board.cells[row][col].isMarked && checkForBingo(board.cells, row: row, col: col) {
+            showingBingo = true
         }
     }
     

@@ -29,28 +29,40 @@ class SignUpViewController: UIViewController {
         }
 
         let email = "\(username)@irlbingo.com"
+        
+        DispatchQueue.main.async {
+            self.errorLabel.text = "Creating account..."
+        }
 
         // Check for duplicate usernames
         db.collection("users").whereField("username", isEqualTo: username).getDocuments { snapshot, error in
             if let error = error {
-                self.errorLabel.text = "Error: \(error.localizedDescription)"
+                DispatchQueue.main.async {
+                    self.errorLabel.text = "Error: \(error.localizedDescription)"
+                }
                 return
             }
 
             if let docs = snapshot?.documents, !docs.isEmpty {
-                self.errorLabel.text = "Username already taken."
+                DispatchQueue.main.async {
+                    self.errorLabel.text = "Username already taken."
+                }
                 return
             }
 
             // Create account using default password
             Auth.auth().createUser(withEmail: email, password: self.defaultPassword) { result, error in
                 if let error = error {
-                    self.errorLabel.text = "Signup failed: \(error.localizedDescription)"
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = "Signup failed: \(error.localizedDescription)"
+                    }
                     return
                 }
 
                 guard let uid = result?.user.uid else {
-                    self.errorLabel.text = "Signup failed: No user ID"
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = "Signup failed: No user ID"
+                    }
                     return
                 }
 
@@ -58,11 +70,13 @@ class SignUpViewController: UIViewController {
                     "username": username,
                     "email": email
                 ]) { error in
-                    if let error = error {
-                        self.errorLabel.text = "Error saving user: \(error.localizedDescription)"
-                    } else {
-                        self.errorLabel.text = ""
-                        self.performSegue(withIdentifier: "toHomeFromCreate", sender: self)
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            self.errorLabel.text = "Error saving user: \(error.localizedDescription)"
+                        } else {
+                            self.errorLabel.text = ""
+                            self.performSegue(withIdentifier: "toHomeFromCreate", sender: self)
+                        }
                     }
                 }
             }

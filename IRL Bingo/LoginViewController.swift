@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
 
         // Check if username exists in Firestore
         db.collection("users").whereField("username", isEqualTo: username).getDocuments { snapshot, error in
+            DispatchQueue.main.async {
             if let error = error {
                 self.errorLabel.text = "Error: \(error.localizedDescription)"
                 return
@@ -42,12 +43,15 @@ class LoginViewController: UIViewController {
             }
 
             // Log in with Firebase using default password
-            Auth.auth().signIn(withEmail: email, password: self.defaultPassword) { result, error in
-                if let error = error {
-                    self.errorLabel.text = "Login failed: \(error.localizedDescription)"
-                } else {
-                    self.errorLabel.text = ""
-                    self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+                Auth.auth().signIn(withEmail: email, password: self.defaultPassword) { result, error in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            self.errorLabel.text = "Login failed: \(error.localizedDescription)"
+                        } else {
+                            self.errorLabel.text = ""
+                            self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+                        }
+                    }
                 }
             }
         }
