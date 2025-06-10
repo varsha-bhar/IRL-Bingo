@@ -742,6 +742,8 @@ struct BingoCellView: View {
                     .fontWeight(.medium)
                     .foregroundColor(textColor)
                     .multilineTextAlignment(.center)
+                    .lineLimit(4) 
+                    .minimumScaleFactor(0.4)
                     .padding(4)
             }
         }
